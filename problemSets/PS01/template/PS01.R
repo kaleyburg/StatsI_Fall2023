@@ -35,6 +35,77 @@ lapply(c(),  pkgTest)
 
 y <- c(105, 69, 86, 100, 82, 111, 104, 110, 87, 108, 87, 90, 94, 113, 112, 98, 80, 97, 95, 111, 114, 89, 95, 126, 98)
 
+#mean of sample
+y_mean <- mean(y)
+print(y_mean)
+
+#standard deviation of sample
+y_sd <- sd(y)
+print(y_sd)
+
+#length of sample
+n <- length(y)
+print(n)
+
+#standard error of sample
+y_se <- y_sd/(sqrt(n))
+print(se_y)
+
+
+#A t-score multiplied by the estimated standard error 
+#gives the margin of error for a confidence interval for the mean.
+  #from the readings
+
+#need to find t score for .90 confidence coefficient
+
+#degrees of freedom for y
+df_y <- n-1
+print(df_y)
+
+#t score for .90
+#first thing is 1-conf coefficent / 2 (or alpha / 2)
+#second thing is degrees of freedom
+#third thing is looking at the upper tail because we did alpha/2?
+
+?qt
+
+
+t90 <- qt((1 - .90)/2, df_y, lower.tail = FALSE)
+
+lower_90 <- y_mean - (t90 * (y_se))
+upper_90 <- y_mean + (t90 * (y_se))
+
+
+confint90 <- c(lower_90, upper_90)
+
+print(confint90)
+
+?rnorm
+
+#part 2
+#hypothesis test at alpha = 0.05 to see whether this sample is higher
+#than the average IQ of 100
+
+#pg 150 of textbook, formula to find t value is sample mean - population mean
+#divided by the standard error
+#standard error is std dev over root n
+
+#already have se calculated from before
+
+#Step 2: hypothesis:
+  #null hypo: μ = 100
+  #alt hypo: μ > 100
+
+#step 3 calculate test statistic
+
+absy_t <- abs((y_mean - 100)/y_se)
+absy_t
+
+#step 4 calculate p value
+
+p_y <- pt(absy_t, df_y, lower.tail = F)
+p_y
+
 #####################
 # Problem 2
 #####################
