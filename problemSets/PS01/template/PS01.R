@@ -49,7 +49,7 @@ print(n)
 
 #standard error of sample
 y_se <- y_sd/(sqrt(n))
-print(se_y)
+print(y_se)
 
 
 #A t-score multiplied by the estimated standard error 
@@ -80,7 +80,6 @@ confint90 <- c(lower_90, upper_90)
 
 print(confint90)
 
-?rnorm
 
 #part 2
 #hypothesis test at alpha = 0.05 to see whether this sample is higher
@@ -98,6 +97,13 @@ print(confint90)
 
 #step 3 calculate test statistic
 
+y_t <- ((y_mean - 100)/y_se)
+
+#This is a negative value and our alternative hypothesis only asks
+#if it is GREATER than the population mean, so we already fail to 
+#reject null hypothesis?
+#but anyway here is calculating p anyway
+
 absy_t <- abs((y_mean - 100)/y_se)
 absy_t
 
@@ -105,6 +111,24 @@ absy_t
 
 p_y <- pt(absy_t, df_y, lower.tail = F)
 p_y
+
+#step 5, we fail to reject the null hypothesis because our P value is
+#.278 which means the probability of this occuring by chance was 27.8%
+#and our alpha value was 0.05, so we fail to reject the null hypothesis
+
+#just to check, going to find the critical t needed for alpha
+
+t95 <- qt((1 - .95), df_y, lower.tail = F)
+t95
+
+#around 1.71 or higher would be needed to reject null
+#what we have below approximately is not high enough, p too low
+
+p_ytest <- pt(0.59, df_y, lower.tail = F)
+p_ytest
+
+
+
 
 #####################
 # Problem 2
