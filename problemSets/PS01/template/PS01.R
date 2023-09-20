@@ -92,13 +92,13 @@ print(confint90)
 #already have se calculated from before
 
 #Step 2: hypothesis:
-  #null hypo: μ = 100
+  #null hypo: μ </= 100
   #alt hypo: μ > 100
 
 #step 3 calculate test statistic
 
 y_t <- ((y_mean - 100)/y_se)
-
+y_t
 #This is a negative value and our alternative hypothesis only asks
 #if it is GREATER than the population mean, so we already fail to 
 #reject null hypothesis?
@@ -107,11 +107,11 @@ y_t <- ((y_mean - 100)/y_se)
 
 #step 4 calculate p value
 
-p_y <- pt(y_t, df_y, lower.tail = T)
+p_y <- pt(y_t, df_y, lower.tail = F)
 p_y
 
 #step 5, we fail to reject the null hypothesis because our P value is
-#.278 which means the probability of this occuring by chance was 27.8%
+#.722 which means the probability of this occuring by chance was 72.2%
 #and our alpha value was 0.05, so we fail to reject the null hypothesis
 
 #just to check, going to find the critical t needed for alpha
@@ -122,9 +122,8 @@ t95
 #around 1.71 or higher would be needed to reject null
 #what we have below approximately is not high enough, p too low
 
-p_ytest <- pt(0.59, df_y, lower.tail = F)
+p_ytest <- pt(0.59, df_y, lower.tail = T)
 p_ytest
-
 
 
 #####################
