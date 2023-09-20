@@ -104,12 +104,10 @@ y_t <- ((y_mean - 100)/y_se)
 #reject null hypothesis?
 #but anyway here is calculating p anyway
 
-absy_t <- abs((y_mean - 100)/y_se)
-absy_t
 
 #step 4 calculate p value
 
-p_y <- pt(absy_t, df_y, lower.tail = F)
+p_y <- pt(y_t, df_y, lower.tail = T)
 p_y
 
 #step 5, we fail to reject the null hypothesis because our P value is
