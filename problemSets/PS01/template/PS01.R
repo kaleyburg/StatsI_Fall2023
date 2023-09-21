@@ -63,20 +63,37 @@ df_y <- n-1
 print(df_y)
 
 #t score for .90
-#first thing is 1-conf coefficent / 2 (or alpha / 2)
-#second thing is degrees of freedom
-#third thing is looking at the upper tail because we did alpha/2?
+#in qt first element is 1-conf coefficent / 2 (or alpha / 2)
+#second element is degrees of freedom
+#third thing is looking at the upper tail because we used (1-.90)/2
+  #(0.05) aka we are trying to find the t score for where 5% lies 
+  #in the upper tail (this will give us a positive t score)
+#so lower.tail = F in order 
 
 ?qt
 
-
 t90 <- qt((1 - .90)/2, df_y, lower.tail = FALSE)
+#OR we can do this which is using .95 instead (half of the confidence
+#coefficient because we want to divide it between both tails)
+#for this we are trying to find the t score where 95% of the area
+#under the curve will fall, and so we are using lower.tail = T (
+#which is the default for this function) and this will give us the
+#same t score we got above
+
+t90_alt <- qt(.95, df_y)
+
+#now we can get the lower and upper bounds
+#by adding and subtracting the t score minus the standard error to
+#the mean
 
 lower_90 <- y_mean - (t90 * (y_se))
 upper_90 <- y_mean + (t90 * (y_se))
 
+#now we just put it together into a single object
 
 confint90 <- c(lower_90, upper_90)
+
+#ta-da 
 
 print(confint90)
 
@@ -99,13 +116,16 @@ print(confint90)
 
 y_t <- ((y_mean - 100)/y_se)
 y_t
+print(y_t)
 #This is a negative value and our alternative hypothesis only asks
 #if it is GREATER than the population mean, so we already fail to 
 #reject null hypothesis?
 #but anyway here is calculating p anyway
 
 
-#step 4 calculate p value
+#step 4 calculate p value for this t score, we are looking in the
+#upper tail because our null is that the mean IQ at the school
+#is HIGHER than the population mean of 100
 
 p_y <- pt(y_t, df_y, lower.tail = F)
 p_y
@@ -114,16 +134,21 @@ p_y
 #.722 which means the probability of this occuring by chance was 72.2%
 #and our alpha value was 0.05, so we fail to reject the null hypothesis
 
-#just to check, going to find the critical t needed for alpha
+#just to show this further, this is to find the critical value of t
+#in order to reject the null in this example
 
 t95 <- qt((1 - .95), df_y, lower.tail = F)
 t95
 
 #around 1.71 or higher would be needed to reject null
-#what we have below approximately is not high enough, p too low
+#our score of around -0.59 is a lot lower than this score
 
-p_ytest <- pt(0.59, df_y, lower.tail = T)
-p_ytest
+#we can also do it this way (from tutorial):
+
+?t.test
+t.test(y, mu = 100, alternative = "greater")
+
+#we get the same thing, yay!
 
 
 #####################
