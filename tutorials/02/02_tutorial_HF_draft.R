@@ -5,7 +5,7 @@
 getwd()
 
 # Set working directory 
-setwd("/Users/hannahfrank/StatsI_Fall2023_prep")
+setwd("C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023")
 getwd()
 
 # Agenda
