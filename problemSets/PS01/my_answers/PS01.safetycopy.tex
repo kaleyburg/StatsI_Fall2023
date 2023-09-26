@@ -183,13 +183,6 @@ A school counselor was curious about the average of IQ of the students in her sc
 	\texttt{Region} &  \emph{1=Northeast, 2= North Central, 3= South, 4=West} \\
 \end{tabular}
 
-\begin{itemize}
-	\item Here is my code for exploring the data set and importing the data into r
-	
-\lstinputlisting[language=R, firstline=159, lastline=161]{PS01.mine.R} 
-
-\end{itemize}
-
 \vspace{.5cm}
 \noindent Explore the \texttt{expenditure} data set and import data into \texttt{R}.
 \vspace{.5cm}
@@ -229,51 +222,9 @@ Please plot the relationships among \emph{Y}, \emph{X1}, \emph{X2}, and \emph{X3
 \vspace{.5cm}
 \item
 Please plot the relationship between \emph{Y} and \emph{Region}? On average, which region has the highest per capita expenditure on housing assistance?
-\vspace{0cm}
-
-
- \includegraphics[width=.8\textwidth]{Y_Region}\hfill
-		
-	\begin{itemize}
-		\item \textbf{I found which region has the highest capita expenditure on housing assistance by making 4 new variables, one for each region. Then I made 4 more variables computing the mean of each region. From this I could see that \colorbox{yellow}{Region 4 (West) had the highest per capita expenditure} \newline \colorbox{yellow}{on housing assistance of 88.31} (rounded to 2 decimal places)}
-		
-		\item \textbf{Then I put these means into one variable and I plotted it. Results below:}
-	\end{itemize}
-	
-	 \includegraphics[width=.8\textwidth]{reg_means}\hfill
-	
+\vspace{.5cm}
 \item
 Please plot the relationship between \emph{Y} and \emph{X1}? Describe this graph and the relationship. Reproduce the above graph including one more variable \emph{Region} and display different regions with different types of symbols and colors.
-
-
-\begin{itemize}
-	
-	\item \textbf{First I used base r plot and I used code from} \href{https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html#:~:text=Basic%20plots%20in%20R,function%20for%20plotting%20x%2Dy%20data.}{this website} 
-	\textbf{and my code is as follows:}
-	
-		\lstinputlisting[language=R, firstline=207, lastline=211]{PS01.mine.R}
-		
-	\item \textbf{My plot for this is below}
-	
-\end{itemize}
-
- \includegraphics[width=.8\textwidth]{base_r_reg_x1_y}\hfill
- 
- \begin{itemize}
- 	\item \textbf{But, this only allowed me to change the colors for each region when I wanted to change the shape also. I tried to find a response for this on google and had no luck, so instead I used ggplot. To do so, I first loaded tidyverse:}
- 	
- 		\lstinputlisting[language=R, firstline=217, lastline=217]{PS01.mine.R}
- 	\item \textbf{Then, I used code from coding camp but also used some code from} \href{https://sscc.wisc.edu/sscc/pubs/dvr/three-variables.html}{here} \textbf{to get this code below:}
- 	
- 		\lstinputlisting[language=R, firstline=222, lastline=228]{PS01.mine.R}
- 		
- 	\item \textbf{The result is here:}
- 	
- 	\includegraphics[width=.8\textwidth]{ggplot_reg_x1_y}\hfill
- 	
- \end{itemize}
-
-
 \end{itemize}
 
 

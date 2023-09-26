@@ -3,7 +3,9 @@
 # set wd
 # clear global .envir
 #####################
-
+getwd()
+setwd("C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets
+      /PS01/my_answers")
 # remove objects
 rm(list=ls())
 # detach all libraries
@@ -14,7 +16,6 @@ detachAllPackages <- function() {
   if (length(package.list)>0)  for (package in package.list) detach(package,  character.only=TRUE)
 }
 detachAllPackages()
-
 # load libraries
 pkgTest <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[,  "Package"])]
@@ -22,7 +23,6 @@ pkgTest <- function(pkg){
     install.packages(new.pkg,  dependencies = TRUE)
   sapply(pkg,  require,  character.only = TRUE)
 }
-
 # here is where you load any necessary packages
 # ex: stringr
 # lapply(c("stringr"),  pkgTest)
@@ -97,7 +97,7 @@ confint90 <- c(lower_90, upper_90)
 #ta-da 
 
 print(confint90)
-
+round(confint90, 2)
 
 #part 2
 #hypothesis test at alpha = 0.05 to see whether this sample is higher
@@ -181,7 +181,7 @@ plot(expenditure$X2, expenditure$X3, pch=16,col = c("pink"))
 #plotting Y and Region
 
 plot(expenditure$Region, expenditure$Y, pch=16,col = c("lightblue"))
-mean(expenditure$Region)
+
 
 reg_1 <- expenditure[expenditure$Region == "1",]
 reg_2 <- expenditure[expenditure$Region == "2",]

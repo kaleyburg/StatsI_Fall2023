@@ -3,7 +3,9 @@
 # set wd
 # clear global .envir
 #####################
-
+getwd()
+setwd("C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets
+      /PS01/my_answers")
 # remove objects
 rm(list=ls())
 # detach all libraries
@@ -14,7 +16,6 @@ detachAllPackages <- function() {
   if (length(package.list)>0)  for (package in package.list) detach(package,  character.only=TRUE)
 }
 detachAllPackages()
-
 # load libraries
 pkgTest <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[,  "Package"])]
@@ -22,7 +23,6 @@ pkgTest <- function(pkg){
     install.packages(new.pkg,  dependencies = TRUE)
   sapply(pkg,  require,  character.only = TRUE)
 }
-
 # here is where you load any necessary packages
 # ex: stringr
 # lapply(c("stringr"),  pkgTest)
@@ -97,7 +97,7 @@ confint90 <- c(lower_90, upper_90)
 #ta-da 
 
 print(confint90)
-
+round(confint90, 2)
 
 #part 2
 #hypothesis test at alpha = 0.05 to see whether this sample is higher
@@ -180,8 +180,8 @@ plot(expenditure$X2, expenditure$X3, pch=16,col = c("pink"))
 
 #plotting Y and Region
 
-plot(expenditure$Region, expenditure$Y, pch=16,col = c("lightblue"))
-mean(expenditure$Region)
+plot(expenditure$Region, expenditure$Y, pch=16,col = c("darkblue"))
+
 
 reg_1 <- expenditure[expenditure$Region == "1",]
 reg_2 <- expenditure[expenditure$Region == "2",]
@@ -195,15 +195,15 @@ reg_4_mean <- mean(reg_4$Y)
 
 reg_means <- c(reg_1_mean, reg_2_mean, reg_3_mean, reg_4_mean)
 
-plot(reg_means)
+plot(reg_means, col = c("darkblue"))
 
 #region 4 has the highest per capita expenditure on housing 
 #assistance
 
 #plotting the relationship between Y and X1
 #I found this https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html#:~:text=Basic%20plots%20in%20R,function%20for%20plotting%20x%2Dy%20data.
-plot(expenditure$X1, expenditure$Y, pch=16,col = c("lightgreen"))
-plot(expenditure$X1, expenditure$Y, expenditure$Region, pch=16,col = c("blue"))
+#plot(expenditure$X1, expenditure$Y, pch=16,col = c("lightgreen"))
+#plot(expenditure$X1, expenditure$Y, expenditure$Region, pch=16,col = c("blue"))
 {plot(expenditure$X1, expenditure$Y, pch=16,
      col=c("red", "purple", "green", "blue")[expenditure$Region])
 legend("topleft", pch=16, col=c("red", "purple", "green", "blue"),
