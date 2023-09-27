@@ -171,11 +171,21 @@ head(expenditure)
 plot(expenditure$X1, expenditure$Y, pch=16,col = c("blue"), 
      main="Relationship Between X1 and Y",
      xlab="X1", ylab="Y")
-plot(expenditure$X2, expenditure$Y, pch=16,col = c("red"))
-plot(expenditure$X3, expenditure$Y, pch=16,col = c("green"))
-plot(expenditure$X1, expenditure$X2, pch=16,col = c("orange"))
-plot(expenditure$X1, expenditure$X3, pch=16,col = c("purple"))
-plot(expenditure$X2, expenditure$X3, pch=16,col = c("pink"))
+plot(expenditure$X2, expenditure$Y, pch=16,col = c("red"),
+     main="Relationship Between X2 and Y",
+     xlab="X2", ylab="Y")
+plot(expenditure$X3, expenditure$Y, pch=16,col = c("green"),
+     main="Relationship Between X3 and Y",
+     xlab="X3", ylab="Y")
+plot(expenditure$X1, expenditure$X2, pch=16,col = c("orange"),
+     main="Relationship Between X1 and X2",
+     xlab="X1", ylab="X2")
+plot(expenditure$X1, expenditure$X3, pch=16,col = c("purple"),
+     main="Relationship Between X1 and X3",
+     xlab="X1", ylab="X3")
+plot(expenditure$X2, expenditure$X3, pch=16,col = c("pink"),
+     main="Relationship Between X2 and X3",
+     xlab="X2", ylab="X3")
 
 #all appear to be positively correlated with each other, except X2
 #and Y seem to be slightly U shaped, same with X2 and X3
