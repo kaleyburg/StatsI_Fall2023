@@ -4,8 +4,7 @@
 # clear global .envir
 #####################
 getwd()
-setwd("C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets
-      /PS01/my_answers")
+setwd("C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets/PS01/my_answers")
 # remove objects
 rm(list=ls())
 # detach all libraries
@@ -167,33 +166,54 @@ head(expenditure)
 
 #https://thomasleeper.com/Rcourse/Tutorials/plotcolors.html
 #found this website for setting colors
+#and this website for saving images https://bookdown.org/ndphillips/YaRrr/saving-plots-to-a-file-with-pdf-jpeg-and-png.html
 
+png(file = "C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets/PS01/my_answers/X1_Y.png")
 plot(expenditure$X1, expenditure$Y, pch=16,col = c("blue"), 
      main="Relationship Between X1 and Y",
      xlab="X1", ylab="Y")
+dev.off()
+
+png(file = "C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets/PS01/my_answers/X2_Y.png")
 plot(expenditure$X2, expenditure$Y, pch=16,col = c("red"),
      main="Relationship Between X2 and Y",
      xlab="X2", ylab="Y")
+dev.off()
+
+png(file = "C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets/PS01/my_answers/X3_Y.png")
 plot(expenditure$X3, expenditure$Y, pch=16,col = c("green"),
      main="Relationship Between X3 and Y",
      xlab="X3", ylab="Y")
+dev.off()
+
+png(file = "C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets/PS01/my_answers/X1_X2.png")
 plot(expenditure$X1, expenditure$X2, pch=16,col = c("orange"),
      main="Relationship Between X1 and X2",
      xlab="X1", ylab="X2")
+dev.off()
+
+png(file = "C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets/PS01/my_answers/X1_X3.png")
 plot(expenditure$X1, expenditure$X3, pch=16,col = c("purple"),
      main="Relationship Between X1 and X3",
      xlab="X1", ylab="X3")
+dev.off()
+
+png(file = "C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets/PS01/my_answers/X2_X3.png")
 plot(expenditure$X2, expenditure$X3, pch=16,col = c("pink"),
      main="Relationship Between X2 and X3",
      xlab="X2", ylab="X3")
+dev.off()
 
 #all appear to be positively correlated with each other, except X2
 #and Y seem to be slightly U shaped, same with X2 and X3
 
 #plotting Y and Region
 
-plot(expenditure$Region, expenditure$Y, pch=16,col = c("darkblue"))
-
+png(file = "C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets/PS01/my_answers/Y_Region.png")
+plot(expenditure$Region, expenditure$Y, pch=16,col = c("darkblue"),
+     main="Relationship Between Region and Y",
+     xlab="Region", ylab="X3")
+dev.off()
 
 reg_1 <- expenditure[expenditure$Region == "1",]
 reg_2 <- expenditure[expenditure$Region == "2",]
@@ -207,8 +227,13 @@ reg_4_mean <- mean(reg_4$Y)
 
 reg_means <- c(reg_1_mean, reg_2_mean, reg_3_mean, reg_4_mean)
 
-plot(reg_means, col = c("darkblue"))
+png(file = "C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets/PS01/my_answers/reg_means.png")
+plot(reg_means, col = c("darkblue"),
+     main="Plot of Region Means by Y",
+     xlab="Region", ylab="Means by Y")
+dev.off()
 
+?plot
 #region 4 has the highest per capita expenditure on housing 
 #assistance
 
@@ -216,11 +241,16 @@ plot(reg_means, col = c("darkblue"))
 #I found this https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html#:~:text=Basic%20plots%20in%20R,function%20for%20plotting%20x%2Dy%20data.
 #plot(expenditure$X1, expenditure$Y, pch=16,col = c("lightgreen"))
 #plot(expenditure$X1, expenditure$Y, expenditure$Region, pch=16,col = c("blue"))
+
+png(file = "C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/problemSets/PS01/my_answers/base_r_reg_x1_y.png")
 {plot(expenditure$X1, expenditure$Y, pch=16,
-     col=c("red", "purple", "green", "blue")[expenditure$Region])
+     col=c("red", "purple", "green", "blue")[expenditure$Region],
+        main="Base r Plot of X1 and Y by Region",
+        xlab="X1", ylab="Y")
 legend("topleft", pch=16, col=c("red", "purple", "green", "blue"),
        c("1", "2", "3", "4"), cex=0.8,
        title="Region")}
+dev.off()
 
 #ok so I couldn't find anywhere how to change the shapes
 #of this plot, only the colors
@@ -229,12 +259,16 @@ legend("topleft", pch=16, col=c("red", "purple", "green", "blue"),
 library(tidyverse)
 #using code from coding camp
 #and using code from here too https://sscc.wisc.edu/sscc/pubs/dvr/three-variables.html
-
+#and used this for changing labels https://environmentalcomputing.net/graphics/ggplot/ggplot-labels/#:~:text=Adding%20a%20title,and%20end%20of%20your%20title.&text=If%20you%20have%20a%20particulary,n%20for%20a%20new%20line.
 
 expenditure %>%
   filter(Region %in% c("1", "2", "3", "4")) %>%
   group_by(Region) %>%
   ggplot(aes(X1, Y, color = as.factor(Region), shape = as.factor(Region))) +
-  geom_point()
+  geom_point() +
   theme_classic() +
-  labs(title = "test")
+  labs(title = "Plot of X1 and Y by Region") +
+  labs(color = "Region", shape = "Region")
+ggsave("ggplot_reg_x1_y.png", device = png)
+    
+
