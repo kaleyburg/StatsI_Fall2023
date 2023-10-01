@@ -82,7 +82,7 @@
 A school counselor was curious about the average of IQ of the students in her school and took a random sample of 25 students' IQ scores. The following is the data set:\\
 \vspace{.5cm}
 
-\lstinputlisting[language=R, firstline=36, lastline=36]{PS01.mine.R}  
+\lstinputlisting[language=R, firstline=35, lastline=35]{PS01.mine.R}  
 
 \vspace{1cm}
 
@@ -93,26 +93,29 @@ A school counselor was curious about the average of IQ of the students in her sc
 		\begin{itemize}
 			\item \textbf{First I made variables for the mean, standard deviation, length, standard error, and degrees of freedom so that I could easily put them into the qt function}
 			
-			\lstinputlisting[language=R, firstline=38, lastline=52]{PS01.mine.R} 
-			\lstinputlisting[language=R, firstline=61, lastline=63]{PS01.mine.R}
+			\lstinputlisting[language=R, firstline=38, lastline=38]{PS01.mine.R}
+				\lstinputlisting[language=R, firstline=42, lastline=42]{PS01.mine.R} 
+					\lstinputlisting[language=R, firstline=46, lastline=46]{PS01.mine.R} 
+						\lstinputlisting[language=R, firstline=50, lastline=50]{PS01.mine.R}  
+			\lstinputlisting[language=R, firstline=61, lastline=61]{PS01.mine.R}
 			
-			\item \textbf{Mean = 98.44, Standard Deviation = 13.09, Length (n) = 25, Standard Error = 2.62}
+			\item \textbf{\colorbox{yellow}{Mean = 98.44, Standard Deviation = 13.09, Length (n) = 25}} \newline \textbf{ \colorbox{yellow} {Degrees of Freedom = 24 Standard Error = 2.62}}
 			
 			 \subitem \textbf {Note: I rounded these to put the results there but I used the non-rounded versions to compute everything}
 			 
 			\item \textbf{Next I used the qt function,using (1 -.90)/2 (or 0.05) because we want to divide it over both tails along with the degrees of freedom. We are looking in the upper tail because we are using the positive t score.  The code using these values in the qt function looks like this. Note: I called the variable t90 but I understand that the exact value I found is actually the t score at 0.95}
 			
-			\lstinputlisting[language=R, firstline=75, lastline=75]{PS01.mine.R}
+			\lstinputlisting[language=R, firstline=74, lastline=74]{PS01.mine.R}
 			
 			\item \textbf{I also showed how to do it this way too:}
 			
-			\lstinputlisting[language=R, firstline=84, lastline=84]{PS01.mine.R}
+			\lstinputlisting[language=R, firstline=83, lastline=83]{PS01.mine.R}
 			
 			\item \textbf{Now I just create the lower and upper bounds using the mean, t score, and standard error. Finally, I put these together to make a confidence interval}
 			
-			\lstinputlisting[language=R, firstline=90, lastline=91]{PS01.mine.R}
+			\lstinputlisting[language=R, firstline=89, lastline=90]{PS01.mine.R}
 			
-			\lstinputlisting[language=R, firstline=95, lastline=95]{PS01.mine.R}
+			\lstinputlisting[language=R, firstline=94, lastline=94]{PS01.mine.R}
 			
 			\item \textbf{My confidence interval is \colorbox{yellow}{[93.96, 102.92]} (rounded to 2 decimal places)}
 			
@@ -147,19 +150,19 @@ A school counselor was curious about the average of IQ of the students in her sc
 			
 		\item \textbf{Here I do this using R code: I find that the t statistic is \colorbox{yellow}{-0.5957} (rounded to 4 decimal places)}
 		
-		\lstinputlisting[language=R, firstline=118, lastline=118]{PS01.mine.R}
+		\lstinputlisting[language=R, firstline=117, lastline=117]{PS01.mine.R}
 		
 		\item \textbf{For the 4th step, we calculate the p value for our test statistic step 4 calculate p value for this t score, we are looking in the upper tail because our null hypothesis is that the mean IQ at the school is HIGHER than the population mean of 100. Here is my code for that: The p value I got was \colorbox{yellow}{0.7215} (rounded to 4 decimal places)}
 		
-		\lstinputlisting[language=R, firstline=131, lastline=131]{PS01.mine.R}
+		\lstinputlisting[language=R, firstline=130, lastline=130]{PS01.mine.R}
 		
 		\item \textbf{For step 5, we draw a conclusion. In this case, we fail to reject the null hypothesis because our p value is 0.7215 (this means that the probability of this occurring by chance was 72.15\%) while and our alpha value was 0.05. Therefore, \colorbox{yellow}{we fail to reject the null hypothesis}}
 			
 		\item \textbf{I also found the critical value of t needed to reject the null in this example just to check my work. I found that the critical t value is 1.71 here is the code to find this:}
-		\lstinputlisting[language=R, firstline=141, lastline=141]{PS01.mine.R}
+		\lstinputlisting[language=R, firstline=140, lastline=140]{PS01.mine.R}
 		
 		\item \textbf{I also checked my work with the t.test function in r and got the same results. My code for that is here:}
-		\lstinputlisting[language=R, firstline=150, lastline=150]{PS01.mine.R}
+		\lstinputlisting[language=R, firstline=149, lastline=149]{PS01.mine.R}
 			
 			
 		
@@ -186,7 +189,7 @@ A school counselor was curious about the average of IQ of the students in her sc
 \begin{itemize}
 	\item Here is my code for exploring the data set and importing the data into r
 	
-\lstinputlisting[language=R, firstline=159, lastline=161]{PS01.mine.R} 
+\lstinputlisting[language=R, firstline=158, lastline=160]{PS01.mine.R} 
 
 \end{itemize}
 
@@ -203,7 +206,7 @@ Please plot the relationships among \emph{Y}, \emph{X1}, \emph{X2}, and \emph{X3
 	\item \textbf{Here is the code I used to make and save my plots (I used code from}
 	\href{https://thomasleeper.com/Rcourse/Tutorials/plotcolors.html}{here} and \href{https://bookdown.org/ndphillips/YaRrr/saving-plots-to-a-file-with-pdf-jpeg-and-png.html}{here} ):
 	
-	\lstinputlisting[language=R, firstline=172, lastline=206]{PS01.mine.R} 
+	\lstinputlisting[language=R, firstline=171, lastline=206]{PS01.mine.R} 
 	
 	\item \textbf{Here are my 6 plots for each of the two variables:}
 	
@@ -217,17 +220,17 @@ Please plot the relationships among \emph{Y}, \emph{X1}, \emph{X2}, and \emph{X3
 		
 	\item \textbf{For the plot of \colorbox{blue}{X1 and Y} we see a positive correlation. It looks somewhere in the middle of strong and weak}
 	
-	\item \textbf{For the plot of \colorbox{red}{X2 and Y}, the graph is somewhat u-shaped, so neither positive or negative}
+	\item \textbf{For the plot of \colorbox{red}{X2 and Y}, the graph is somewhat u-shaped, so neither positive or negative. It also looks between weak and strong}
 	
 	\item \textbf{For the plot of\colorbox{green}{X3 and Y}, the graph is positive and looks weak}
 	
-	\item \textbf{For the plot of \colorbox{orange}{X1 and X2}, the graph is positive and looks weak}
+	\item \textbf{For the plot of \colorbox{orange}{X1 and X2}, the graph does not appear to have any strong correlation, if anything it looks slightly positive. It also looks very weak}
 	
 	
 	
 	\item \textbf{For the plot of \colorbox{Orchid}{X1 and X3}, the graph is positive and looks somewhere between weak and strong}
 	
-	\item \textbf{For the plot of \colorbox{pink}{X1 and X2}, the graph is positive and looks weak}
+	\item \textbf{For the plot of \colorbox{pink}{X1 and X2}, the graph does not appear to have any strong correlation, if anything it looks slightly positive. It also looks very weak}
 \end{itemize}
 	
 
@@ -260,23 +263,30 @@ Please plot the relationship between \emph{Y} and \emph{Region}? On average, whi
 Please plot the relationship between \emph{Y} and \emph{X1}? Describe this graph and the relationship. Reproduce the above graph including one more variable \emph{Region} and display different regions with different types of symbols and colors.
 
 
+
 \begin{itemize}
 	
-	\item \textbf{First I used base r plot and I used code from} \href{https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html#:~:text=Basic%20plots%20in%20R,function%20for%20plotting%20x%2Dy%20data.}{this website} 
+	\item \textbf{Below is the plot of Y and X1 alone. We see a positive correlation. It looks somewhere in the middle of strong and weak}
+	
+		\includegraphics[width=.8\textwidth]{X1_y}\hfill
+	
+	
+	
+	\item \textbf{Now to include region: First I used base r plot and I used code from} \href{https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html#:~:text=Basic%20plots%20in%20R,function%20for%20plotting%20x%2Dy%20data.}{this website} 
 	\textbf{and my code is as follows:}
 	
-		\lstinputlisting[language=R, firstline=246, lastline=254]{PS01.mine.R}
+		\lstinputlisting[language=R, firstline=245, lastline=253]{PS01.mine.R}
 		
 	\item \textbf{My plot for this is below}
 	
 \end{itemize}
 
- \includegraphics[width=.6\textwidth]{base_r_reg_x1_y}\hfill
+ \includegraphics[width=.8\textwidth]{base_r_reg_x1_y}\hfill
  
  \begin{itemize}
  	\item \textbf{But, this only allowed me to change the colors for each region when I wanted to change the shape also. I tried to find a response for this on google and had no luck, so instead I used ggplot. To do so, I first loaded tidyverse:}
  	
- 		\lstinputlisting[language=R, firstline=260, lastline=260]{PS01.mine.R}
+ 		\lstinputlisting[language=R, firstline=259, lastline=259]{PS01.mine.R}
  		
  	\item \textbf{Then, I used code from coding camp but also used some code from} \href{https://sscc.wisc.edu/sscc/pubs/dvr/three-variables.html}{here} \textbf{to get this code below:}
  	
