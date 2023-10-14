@@ -108,7 +108,7 @@
 				\lstinputlisting[language=R, firstline=45, lastline=45]{PS02_answers_KB_Cleaned_R.R}
 			\item Then I made a new matrix to fill with expected values. I also made the column and row names the same as the previous matrix
 				\lstinputlisting[language=R, firstline=61, lastline=63]{PS02_answers_KB_Cleaned_R.R}
-			\item For the actual "by hand" computation in R, I created a for loop that iterated through value of the matrix "polscidata". For each value, the loop saved the row sums, column sums, and total sum and computed a new value corresponding to the formula: (row sum/total sum)*column sum. Lastly, I added this to the empty matrix ("expected) that I made earlier
+			\item For the actual "by hand" computation in R, I created a for loop that iterated through value of the matrix "polscidata". For each value, the loop saved the row sums, column sums, and total sum and computed a new value corresponding to the formula: (row sum/total sum)*column sum. Lastly, I added this to the empty matrix ("expected") that I made earlier
 				\lstinputlisting[language=R, firstline=77, lastline=84]{PS02_answers_KB_Cleaned_R.R}
 			\item Then, for clarity, I decided to change the name of my variable "polscidata" to "observed" as this aligns with the further computation
 				\lstinputlisting[language=R, firstline=89, lastline=89]{PS02_answers_KB_Cleaned_R.R}
@@ -195,8 +195,16 @@ Chattopadhyay and Duflo were interested in whether women promote different polic
 	\item [(a)] State a null and alternative (two-tailed) hypothesis. 
 	
 		\begin{itemize}
-			\item {Null Hypothesis: $\beta$ $=$ 0}
-			\item {Alternative Hypothesis: $\beta$ $\neq$ 0}
+			\item As this research question is looking at the effect of the reservation policy on the number of new or repaired drinking water facilities, it makes most sense to look at the coefficient ($\beta_1$). The hypotheses for such is (note: the lecture slides referred to $\beta$ as $\beta_1$ and $\alpha$ as $\beta_0$ so I will be using that notation in my hypotheses):
+				\begin{itemize}
+					\item {Null Hypothesis: $\beta_1$ $=$ 0}
+					\item {Alternative Hypothesis: $\beta_1$ $\neq$ 0}
+				\end{itemize}
+			\item The null hypotheses for the intercept is as follows:
+				\begin{itemize}
+					\item {Null Hypothesis: $\beta_0$ $=$ 0}
+					\item {Alternative Hypothesis: $\beta_0$ $\neq$ 0}
+				\end{itemize}
 		\end{itemize}
 	
 	\vspace{0cm}
@@ -206,7 +214,7 @@ Chattopadhyay and Duflo were interested in whether women promote different polic
 			\item First I created a dataframe with the csv file provided. Then I plotted the reserved variable by the water variable. The question is asking whether the reservation policy (recorded in the reserved variable) has an effect on the number of new or repaired drinking water facilities (recorded in the water variable). I also plotted the regression line using the code for "model" in the next section of code.
 				\lstinputlisting[language=R, firstline=191, lastline=191]{PS02_answers_KB_Cleaned_R.R}
 				\lstinputlisting[language=R, firstline=220, lastline=225]{PS02_answers_KB_Cleaned_R.R}
-				\includegraphics[width=.5\textwidth]{RegressionPlot}\hfill
+				\includegraphics[width=.4\textwidth]{RegressionPlot}\hfill
 			\item Next, I fit the linear regression model using the summary function. I did this two ways, as it was stated in tutorial that the latter way is better practice. Then I saved this model into an object named "model"
 				\lstinputlisting[language=R, firstline=198, lastline=198]{PS02_answers_KB_Cleaned_R.R}
 				\lstinputlisting[language=R, firstline=200, lastline=200]{PS02_answers_KB_Cleaned_R.R}
@@ -217,10 +225,19 @@ Chattopadhyay and Duflo were interested in whether women promote different polic
 	\vspace{0cm}
 	\item [(c)] Interpret the coefficient estimate for reservation policy. 
 		\begin{itemize}
-			\item The value of $\alpha$ is \textbf{14.738}
-			\item The value of $\beta$ is \textbf{9.252}
-			\item The coefficient estimate ($\beta$) is stating that an increase of 1 reservation policy is associated with an average increase in new or repaired drinking water facilities in the villages of 9.252. 
-			\item However, this is not the best way to word this given that the reservation policy is coded as a binary variable. In other words, the change from no reservation policy to having a reservation policy is associated with an on average increase in new or repaired drinking water facilities in the villages of 9.252
+			\item The value of $\beta_0$ is \textbf{14.738}
+			\item The value of $\beta_1$ is \textbf{9.252}
+			\item The coefficient estimate ($\beta_1$) is stating that an increase of 1 reservation policy is associated with an average increase in new or repaired drinking water facilities in the villages of 9.252. 
+			\item However, this is not the best way to word this given that the reservation policy is coded as a binary variable. Rather, the change from no reservation policy to having a reservation policy is associated with an on average increase in new or repaired drinking water facilities in the villages of 9.252
+				\begin{itemize}
+					\item The p-value for this value is \textbf{0.0197}, so we can reject the null hypothesis at the 0.05 level.
+				\end{itemize}
+			\item Regarding $\beta_0$, the interpretion is: with no reservation policy, there is an average of 14.738 new or repaired drinking water facilities in the villages.
+				\begin{itemize}
+					\item The p-value for this value is \textbf{4.22e-10}, so we can reject the null hypothesis at the 0.001 level.
+				\end{itemize}
+			\item I think it is also important to note that this is a randomized experimental study, which also changes the interpretation of our results slightly. Under the assumption of causal inference, we would be able to say that \textbf{the reservation policy has an effect on the number of new or repaired drinking water facilities in the villages, such that the presence of a reservation policy causes an average increase of 9.25 new or repaired water facilities in the villages.}
+			
 		\end{itemize}
 \end{enumerate}
 
