@@ -280,3 +280,47 @@ sprintf("%.20f",2e-16)
 #0.3028613 is the intercept
 #this means that for every 1 increase in X, the expected
 #average increase in Y is 0.0018240
+
+#bivariate regression by hand too
+beta <- sum((econdf$water - mean(econdf$water)) * 
+              (econdf$reserved - mean(econdf$reserved))) / 
+  sum((econdf$reserved - mean(econdf$reserved))^2)
+beta
+
+alpha <- mean(econdf$water) - beta*mean(econdf$reserved)
+alpha
+
+
+#finding standard deviation estimate to plug in
+
+#saving df1 as the same as model but without summary()
+df1 <- lm(water ~ reserved, data = econdf)
+
+sd_estimate <- sqrt(sum(resid(df1)^2)/
+                      (dim(econdf)[1] - 2))
+sd_estimate
+#also can do it this way
+sigma(lm(water ~ reserved, data = econdf))
+
+
+#finding standard errors
+beta_se <- sd_estimate/sqrt(sum((econdf$reserved - 
+                                   mean(econdf$reserved))^2))
+beta_se
+
+
+alpha_se <- sd_estimate * sqrt((1 / dim(econdf)[1]) + 
+                                 (mean(econdf$reserved)^2 / sum((econdf$reserved - 
+                                                                   mean(econdf$reserved))^2)))
+alpha_se
+
+#finding p value
+2*pt((beta - 0)/beta_se, dim(econdf)[1]-2, lower.tail = F)
+2*pt((alpha - 0)/alpha_se, dim(econdf)[1]-2, lower.tail = F)
+
+#checking this against model from earlier
+model
+
+sprintf("%.20f",4.22e-10)
+sprintf("%.20f",3.623354e-10)
+
