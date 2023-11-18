@@ -1,0 +1,431 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{datetime}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+\title{Problem Set 3 Answers}
+\date{\today}
+\author{Applied Stats/Quant Methods 1}
+
+
+\begin{document}
+	\maketitle
+	\section*{Instructions}
+	\begin{itemize}
+		\item Please show your work! You may lose points by simply writing in the answer. If the problem requires you to execute commands in \texttt{R}, please include the code you used to get your answers. Please also include the \texttt{.R} file that contains your code. If you are not sure if work needs to be shown for a particular problem, please ask.
+	\item Your homework should be submitted electronically on GitHub.
+	\item This problem set is due before 23:59 on Sunday November 19, 2023. No late assignments will be accepted.
+
+	\end{itemize}
+
+		\vspace{.25cm}
+	
+\noindent In this problem set, you will run several regressions and create an add variable plot (see the lecture slides) in \texttt{R} using the \texttt{incumbents\_subset.csv} dataset. Include all of your code.
+
+	\vspace{.5cm}
+\section*{Question 1}
+\vspace{.25cm}
+\noindent We are interested in knowing how the difference in campaign spending between incumbent and challenger affects the incumbent's vote share. 
+
+\begin{itemize}
+	\item First, I imported the data:
+	\item \lstinputlisting[language=R, firstline=35, lastline =35]{KB_PS3_R.R}
+\end{itemize}
+	\begin{enumerate}
+		\item Run a regression where the outcome variable is \texttt{voteshare} and the explanatory variable is \texttt{difflog}.	\vspace{0cm}
+		
+\begin{itemize}
+	\item Code for Regression Analysis using lm function:
+	\item \lstinputlisting[language=R, firstline=51, lastline=51]{KB_PS3_R.R}
+	\begin{table}[!htbp] \centering 
+		\caption{} 
+		\label{} 
+		\begin{tabular}{@{\extracolsep{5pt}}lc} 
+			\\[-1.8ex]\hline 
+			\hline \\[-1.8ex] 
+			& \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+			\cline{2-2} 
+			\\[-1.8ex] & voteshare \\ 
+			\hline \\[-1.8ex] 
+			difflog & 0.042$^{***}$ \\ 
+			& (0.001) \\ 
+			& \\ 
+			Constant & 0.579$^{***}$ \\ 
+			& (0.002) \\ 
+			& \\ 
+			\hline \\[-1.8ex] 
+			Observations & 3,193 \\ 
+			R$^{2}$ & 0.367 \\ 
+			Adjusted R$^{2}$ & 0.367 \\ 
+			Residual Std. Error & 0.079 (df = 3191) \\ 
+			F Statistic & 1,852.791$^{***}$ (df = 1; 3191) \\ 
+			\hline 
+			\hline \\[-1.8ex] 
+			\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+		\end{tabular} 
+	\end{table} 
+\vspace{.5cm}
+\end{itemize}
+	
+		\item Make a scatterplot of the two variables and add the regression line. 	
+
+\begin{itemize}
+	\item The plot with the regression line:
+	\item \lstinputlisting[language=R, firstline=60, lastline=72]{KB_PS3_R.R}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{difflog_on_voteshare}
+	\end{figure} 
+\end{itemize}
+\vspace{5cm}
+
+		\item Save the residuals of the model in a separate object.
+		
+\begin{itemize}
+	\item \lstinputlisting[language=R, firstline=80, lastline=80]{KB_PS3_R.R}
+\end{itemize}
+
+
+		\item Write the prediction equation.
+
+\begin{itemize}
+	\item$\hat{y}$ = 0.579 + 0.042x
+	\item OR
+	\item Incumbent Electoral Success =  0.579031 + 0.041666 x Difference in Campaign Spending
+\end{itemize}
+
+Interpretation of Regression Results: For every one-unit increase in the Difference in Campaign Spending, on average, Incumbent Electoral Success increases by 0.579031 units
+
+	\end{enumerate}
+	
+\newpage
+
+\section*{Question 2}
+\noindent We are interested in knowing how the difference between incumbent and challenger's spending and the vote share of the presidential candidate of the incumbent's party are related.	\vspace{.25cm}
+	\begin{enumerate}
+		\item Run a regression where the outcome variable is \texttt{presvote} and the explanatory variable is \texttt{difflog}.
+		
+		
+\begin{itemize}
+	\item Code for Regression Analysis using lm function:
+	\item \lstinputlisting[language=R, firstline=98, lastline=98]{KB_PS3_R.R}
+	\begin{table}[!htbp] \centering 
+		\caption{} 
+		\label{} 
+		\begin{tabular}{@{\extracolsep{5pt}}lc} 
+			\\[-1.8ex]\hline 
+			\hline \\[-1.8ex] 
+			& \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+			\cline{2-2} 
+			\\[-1.8ex] & presvote \\ 
+			\hline \\[-1.8ex] 
+			difflog & 0.024$^{***}$ \\ 
+			& (0.001) \\ 
+			& \\ 
+			Constant & 0.508$^{***}$ \\ 
+			& (0.003) \\ 
+			& \\ 
+			\hline \\[-1.8ex] 
+			Observations & 3,193 \\ 
+			R$^{2}$ & 0.088 \\ 
+			Adjusted R$^{2}$ & 0.088 \\ 
+			Residual Std. Error & 0.110 (df = 3191) \\ 
+			F Statistic & 307.715$^{***}$ (df = 1; 3191) \\ 
+			\hline 
+			\hline \\[-1.8ex] 
+			\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+		\end{tabular} 
+	\end{table} 
+\vspace{.5cm}
+\end{itemize}
+	
+		\item Make a scatterplot of the two variables and add the regression line. 
+	
+
+\begin{itemize}
+	\item \lstinputlisting[language=R, firstline=105, lastline=117]{KB_PS3_R.R}
+	\item 	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{difflog_on_pres_diff}
+	\end{figure} 
+\end{itemize}
+
+
+		\item Save the residuals of the model in a separate object.	
+
+\begin{itemize}
+	\item \lstinputlisting[language=R, firstline=122, lastline=122]{KB_PS3_R.R}
+\end{itemize}
+
+
+		\item Write the prediction equation.
+		
+\begin{itemize}
+	\item $\hat{y}$ = 0.508 + 0.024x
+	\item OR
+	\item Presidential Candidate Vote Share =  0.507585 + 0.023837*Difference in Campaign Spending
+\end{itemize}
+
+Interpretation of Regression Results: For every one-unit increase in the Difference in Campaign Spending, on average, Presidential Vote Share increases by 0.023837 units
+
+	\end{enumerate}
+
+\section*{Question 3}
+
+\noindent We are interested in knowing how the vote share of the presidential candidate of the incumbent's party is associated with the incumbent's electoral success.
+	\vspace{.25cm}
+	\begin{enumerate}
+		\item Run a regression where the outcome variable is \texttt{voteshare} and the explanatory variable is \texttt{presvote}.
+		
+\begin{itemize}
+	\item Code for Regression Analysis using lm function:
+	\item \lstinputlisting[language=R, firstline=145, lastline=145]{KB_PS3_R.R}
+	\begin{table}[!htbp] \centering 
+		\caption{} 
+		\label{} 
+		\begin{tabular}{@{\extracolsep{5pt}}lc} 
+			\\[-1.8ex]\hline 
+			\hline \\[-1.8ex] 
+			& \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+			\cline{2-2} 
+			\\[-1.8ex] & voteshare \\ 
+			\hline \\[-1.8ex] 
+			presvote & 0.388$^{***}$ \\ 
+			& (0.013) \\ 
+			& \\ 
+			Constant & 0.441$^{***}$ \\ 
+			& (0.008) \\ 
+			& \\ 
+			\hline \\[-1.8ex] 
+			Observations & 3,193 \\ 
+			R$^{2}$ & 0.206 \\ 
+			Adjusted R$^{2}$ & 0.206 \\ 
+			Residual Std. Error & 0.088 (df = 3191) \\ 
+			F Statistic & 826.950$^{***}$ (df = 1; 3191) \\ 
+			\hline 
+			\hline \\[-1.8ex] 
+			\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+		\end{tabular} 
+		\vspace{.5cm}
+	\end{table} 
+\end{itemize}
+
+
+		\item Make a scatterplot of the two variables and add the regression line. 
+
+
+\begin{itemize}
+	\item The plot with the regression line:
+	\item \lstinputlisting[language=R, firstline=153, lastline=164]{KB_PS3_R.R}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{presvote_on_voteshare.png}
+	\end{figure}
+\end{itemize}
+		\item Write the prediction equation.
+		
+\begin{itemize}
+	\item $\hat{y}$ = 0.441 + 0.388x
+	\item OR
+	\item Vote Share of Presidential Candidate = 0.441 + 0.388*Incumbent Electoral Success
+\end{itemize}
+	\end{enumerate}
+
+
+Interpretation of Regression Results: For every one-unit increase in the Incumbent Electoral Success, on average, Presidential Vote Share increases by 0.023837 units
+	
+	
+\section*{Question 4}
+\noindent The residuals from part (a) tell us how much of the variation in \texttt{voteshare} is $not$ explained by the difference in spending between incumbent and challenger. The residuals in part (b) tell us how much of the variation in \texttt{presvote} is $not$ explained by the difference in spending between incumbent and challenger in the district.
+	\begin{enumerate}
+		\item Run a regression where the outcome variable is the residuals from Question 1 and the explanatory variable is the residuals from Question 2.
+		
+		
+\begin{itemize}
+	\item Code for Regression Analysis using lm function:
+	\item \lstinputlisting[language=R, firstline=198, lastline=198]{KB_PS3_R.R}
+	\begin{table}[!htbp] \centering 
+		\caption{} 
+		\label{} 
+		\begin{tabular}{@{\extracolsep{5pt}}lc} 
+			\\[-1.8ex]\hline 
+			\hline \\[-1.8ex] 
+			& \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+			\cline{2-2} 
+			\\[-1.8ex] & ex1resids \\ 
+			\hline \\[-1.8ex] 
+			ex2resids & 0.257$^{***}$ \\ 
+			& (0.012) \\ 
+			& \\ 
+			Constant & $-$0.000 \\ 
+			& (0.001) \\ 
+			& \\ 
+			\hline \\[-1.8ex] 
+			Observations & 3,193 \\ 
+			R$^{2}$ & 0.130 \\ 
+			Adjusted R$^{2}$ & 0.130 \\ 
+			Residual Std. Error & 0.073 (df = 3191) \\ 
+			F Statistic & 476.975$^{***}$ (df = 1; 3191) \\ 
+			\hline 
+			\hline \\[-1.8ex] 
+			\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+		\end{tabular} 
+	\end{table} 
+	\vspace{0.5cm}
+\end{itemize}
+
+
+		\item Make a scatterplot of the two residuals and add the regression line. 	
+		
+	
+\begin{itemize}
+		\item The plot with the regression line:
+	\item \lstinputlisting[language=R, firstline=208, lastline=219]{KB_PS3_R.R}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{resids_regression.png}
+	\end{figure}
+\end{itemize}	
+	
+
+		\item Write the prediction equation.
+		
+\begin{itemize}
+	\item $\hat{y}$ = -0.000 + 0.257x
+	\item OR
+	\item Residuals for difflog on voteshare(reg1) = -0.000 + 0.257*Residuals for difflog on presvote(reg2)
+\end{itemize}
+
+
+	\end{enumerate}
+	
+Interpretation of Regression Results: Every one-point increase in error on the second regression, on average is associated with a 0.257 point increase on the first regression.
+
+\vspace{1cm}
+
+\section*{Question 5}
+\noindent What if the incumbent's vote share is affected by both the president's popularity and the difference in spending between incumbent and challenger? 
+	\begin{enumerate}
+		\item Run a regression where the outcome variable is the incumbent's \texttt{voteshare} and the explanatory variables are \texttt{difflog} and \texttt{presvote}.
+		
+\begin{itemize}
+	\item Code for Regression Analysis using lm function:
+	\item \lstinputlisting[language=R, firstline=263, lastline=263]{KB_PS3_R.R}
+	\begin{table}[!htbp] \centering 
+		\caption{} 
+		\label{} 
+		\begin{tabular}{@{\extracolsep{5pt}}lc} 
+			\\[-1.8ex]\hline 
+			\hline \\[-1.8ex] 
+			& \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+			\cline{2-2} 
+			\\[-1.8ex] & voteshare \\ 
+			\hline \\[-1.8ex] 
+			presvote & 0.257$^{***}$ \\ 
+			& (0.012) \\ 
+			& \\ 
+			difflog & 0.036$^{***}$ \\ 
+			& (0.001) \\ 
+			& \\ 
+			Constant & 0.449$^{***}$ \\ 
+			& (0.006) \\ 
+			& \\ 
+			\hline \\[-1.8ex] 
+			Observations & 3,193 \\ 
+			R$^{2}$ & 0.450 \\ 
+			Adjusted R$^{2}$ & 0.449 \\ 
+			Residual Std. Error & 0.073 (df = 3190) \\ 
+			F Statistic & 1,302.947$^{***}$ (df = 2; 3190) \\ 
+			\hline 
+			\hline \\[-1.8ex] 
+			\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+		\end{tabular} 
+	\end{table} 
+	\vspace{0.5cm}
+\end{itemize}		
+		
+
+		\item Write the prediction equation.
+		
+		
+\begin{itemize}
+	\item  $\hat{y}$ = -0.449 + 0.257x2 + 0.355x2
+	\item OR
+	\item Incumbent Vote Share = -0.449 + 0.036*Difference in Spending + 0.257* Presidential Vote Share
+\end{itemize}
+		
+
+		\item What is it in this output that is identical to the output in Question 4? Why do you think this is the case?
+		
+\begin{itemize}
+	\item The $\beta$1 coefficient from Question 4 is the same as the $\beta$ coefficient for presvote in the regression analysis from Question 5 (They are both 0.257).
+	\item This is because the residuals saved from question 1 represent the leftover/unexplained variation of difflog on voteshare. Question 4 shows that the unexplained variation in model 1 is associated with unexplained variation in model 2. In multiple linear regression we are calculating the partial effect, or rather then amount of covariance between an outcome and an explanatory variable that is not explained by the other variables in the model. So, the coefficient for presvote in Question 5 represents the variance explained by presvote THAT IS NOT EXPLAINED BY DIFFLOG. In question 4, we see that the coefficient for the residuals (everything not explained by difflog) is 0.257.
+	\item Overall, the results are the same because conceptually, the coefficient of presvote in question 5 represents variance that is not explained by difflog, which conceptually is the exact same thing we are measuring in the regression model in question 4.
+\end{itemize}	
+
+
+
+	\end{enumerate}
+
+
+
+
+\end{document}
