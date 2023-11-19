@@ -147,16 +147,33 @@
 		\item Write the prediction equation.
 
 \begin{itemize}
-	\item$\hat{y}$ = 0.579 + 0.042x
+	\item$\hat{y}$ = 0.579 + 0.042$\beta_1$
 	\item OR
-	\item Incumbent Electoral Success =  0.579031 + 0.041666 x Difference in Campaign Spending
+	\item Incumbent Electoral Success =  0.579 + 0.042 x Difference in Campaign Spending
 \end{itemize}
 
-Interpretation of Regression Results: For every one-unit increase in the Difference in Campaign Spending, on average, Incumbent Electoral Success increases by 0.579031 units
+\begin{flushleft}Interpretation of Regression Results: A one-unit increase in the Difference in Campaign Spending is associated, on average, with a 0.579 unit increase in Incumbent Electoral Success.
+\end{flushleft}
 
+\begin{itemize}
+	\item  The null hypotheses for such the coefficient:
+	\begin{itemize}
+		\item {Null Hypothesis: $\beta_1$ $=$ 0}
+		\item {Alternative Hypothesis: $\beta_1$ $\neq$ 0}
+	\end{itemize}
+
+\item The null hypotheses for the intercept is as follows:
+\begin{itemize}
+	\item {Null Hypothesis: $\beta_0$ $=$ 0}
+	\item {Alternative Hypothesis: $\beta_0$ $\neq$ 0}
+\end{itemize}
+
+\end{itemize}
+
+\begin{flushleft}Because the p-value of the $\beta_1$coefficient is less than 0.05, we can reject the null hypothesis at the 0.05 level.
+\end{flushleft}
 	\end{enumerate}
-	
-\newpage
+
 
 \section*{Question 2}
 \noindent We are interested in knowing how the difference between incumbent and challenger's spending and the vote share of the presidential candidate of the incumbent's party are related.	\vspace{.25cm}
@@ -219,12 +236,31 @@ Interpretation of Regression Results: For every one-unit increase in the Differe
 		\item Write the prediction equation.
 		
 \begin{itemize}
-	\item $\hat{y}$ = 0.508 + 0.024x
+	\item $\hat{y}$ = 0.508 + 0.024$\beta_1$
 	\item OR
-	\item Presidential Candidate Vote Share =  0.507585 + 0.023837*Difference in Campaign Spending
+	\item Presidential Candidate Vote Share =  0.508 + 0.024*Difference in Campaign Spending
 \end{itemize}
 
-Interpretation of Regression Results: For every one-unit increase in the Difference in Campaign Spending, on average, Presidential Vote Share increases by 0.023837 units
+\begin{flushleft}Interpretation of Regression Results: A one-unit increase in the Difference in Campaign Spending is associated, on average, with a  0.023837 unit increase in Presidential Vote Share.
+	\end{flushleft}
+
+\begin{itemize}
+	\item  The null hypotheses for such the coefficient:
+	\begin{itemize}
+		\item {Null Hypothesis: $\beta_1$ $=$ 0}
+		\item {Alternative Hypothesis: $\beta_1$ $\neq$ 0}
+	\end{itemize}
+	
+	\item The null hypotheses for the intercept is as follows:
+	\begin{itemize}
+		\item {Null Hypothesis: $\beta_0$ $=$ 0}
+		\item {Alternative Hypothesis: $\beta_0$ $\neq$ 0}
+	\end{itemize}
+	
+\end{itemize}
+
+\begin{flushleft}Because the p-value of the $\beta_1$coefficient is less than 0.05, we can reject the null hypothesis at the 0.05 level.
+	\end{flushleft}
 
 	\end{enumerate}
 
@@ -264,11 +300,12 @@ Interpretation of Regression Results: For every one-unit increase in the Differe
 			\hline \\[-1.8ex] 
 			\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
 		\end{tabular} 
-		\vspace{.5cm}
+		
 	\end{table} 
+
 \end{itemize}
-
-
+	\vspace{5cm}
+\newpage
 		\item Make a scatterplot of the two variables and add the regression line. 
 
 
@@ -283,15 +320,33 @@ Interpretation of Regression Results: For every one-unit increase in the Differe
 		\item Write the prediction equation.
 		
 \begin{itemize}
-	\item $\hat{y}$ = 0.441 + 0.388x
+	\item $\hat{y}$ = 0.441 + 0.388$\beta_1$
 	\item OR
-	\item Vote Share of Presidential Candidate = 0.441 + 0.388*Incumbent Electoral Success
+	\item Incumbent Electoral Success = 0.441 + 0.388*Vote Share of Presidential Candidate
 \end{itemize}
 	\end{enumerate}
 
 
-Interpretation of Regression Results: For every one-unit increase in the Incumbent Electoral Success, on average, Presidential Vote Share increases by 0.023837 units
+\begin{flushleft}Interpretation of Regression Results: A one-unit increase in the Incumbent Electoral Success is associated with, on average, a 0.388 unit increase in Presidential Vote Share.
+	\end{flushleft}
+
+\begin{itemize}
+	\item  The null hypotheses for such the coefficient:
+	\begin{itemize}
+		\item {Null Hypothesis: $\beta_1$ $=$ 0}
+		\item {Alternative Hypothesis: $\beta_1$ $\neq$ 0}
+	\end{itemize}
 	
+	\item The null hypotheses for the intercept is as follows:
+	\begin{itemize}
+		\item {Null Hypothesis: $\beta_0$ $=$ 0}
+		\item {Alternative Hypothesis: $\beta_0$ $\neq$ 0}
+	\end{itemize}
+	
+\end{itemize}
+
+\begin{flushleft}{Because the p-value of the $\beta_1$coefficient is less than 0.05, we can reject the null hypothesis at the 0.05 level.}
+\end{flushleft}
 	
 \section*{Question 4}
 \noindent The residuals from part (a) tell us how much of the variation in \texttt{voteshare} is $not$ explained by the difference in spending between incumbent and challenger. The residuals in part (b) tell us how much of the variation in \texttt{presvote} is $not$ explained by the difference in spending between incumbent and challenger in the district.
@@ -349,7 +404,7 @@ Interpretation of Regression Results: For every one-unit increase in the Incumbe
 		\item Write the prediction equation.
 		
 \begin{itemize}
-	\item $\hat{y}$ = -0.000 + 0.257x
+	\item $\hat{y}$ = -0.000 + 0.257$\beta_1$
 	\item OR
 	\item Residuals for difflog on voteshare(reg1) = -0.000 + 0.257*Residuals for difflog on presvote(reg2)
 \end{itemize}
@@ -357,7 +412,26 @@ Interpretation of Regression Results: For every one-unit increase in the Incumbe
 
 	\end{enumerate}
 	
-Interpretation of Regression Results: Every one-point increase in error on the second regression, on average is associated with a 0.257 point increase on the first regression.
+\begin{flushleft}Interpretation of Regression Results: A one-point increase in error on the second regression is associated with, on average, is associated with a a 0.257 point increase on the first regression.
+	\end{flushleft}
+
+\begin{itemize}
+	\item  The null hypotheses for such the coefficient:
+	\begin{itemize}
+		\item {Null Hypothesis: $\beta_1$ $=$ 0}
+		\item {Alternative Hypothesis: $\beta_1$ $\neq$ 0}
+	\end{itemize}
+	
+	\item The null hypotheses for the intercept is as follows:
+	\begin{itemize}
+		\item {Null Hypothesis: $\beta_0$ $=$ 0}
+		\item {Alternative Hypothesis: $\beta_0$ $\neq$ 0}
+	\end{itemize}
+	
+\end{itemize}
+
+\begin{flushleft}Because the p-value of the $\beta_1$coefficient is less than 0.05, we can reject the null hypothesis at the 0.05 level.
+\end{flushleft}
 
 \vspace{1cm}
 
@@ -407,21 +481,41 @@ Interpretation of Regression Results: Every one-point increase in error on the s
 		
 		
 \begin{itemize}
-	\item  $\hat{y}$ = -0.449 + 0.257x2 + 0.355x2
+	\item  $\hat{y}$ = -0.449 + 0.257$\beta_1$ + 0.356$\beta_2$
 	\item OR
-	\item Incumbent Vote Share = -0.449 + 0.036*Difference in Spending + 0.257* Presidential Vote Share
+	\item Incumbent Vote Share = -0.449 +  0.257*Presidential Vote Share + 0.036*Difference in Spending
+	
 \end{itemize}
 		
 
 		\item What is it in this output that is identical to the output in Question 4? Why do you think this is the case?
 		
 \begin{itemize}
-	\item The $\beta$1 coefficient from Question 4 is the same as the $\beta$ coefficient for presvote in the regression analysis from Question 5 (They are both 0.257).
-	\item This is because the residuals saved from question 1 represent the leftover/unexplained variation of difflog on voteshare. Question 4 shows that the unexplained variation in model 1 is associated with unexplained variation in model 2. In multiple linear regression we are calculating the partial effect, or rather then amount of covariance between an outcome and an explanatory variable that is not explained by the other variables in the model. So, the coefficient for presvote in Question 5 represents the variance explained by presvote THAT IS NOT EXPLAINED BY DIFFLOG. In question 4, we see that the coefficient for the residuals (everything not explained by difflog) is 0.257.
+	\item The $\beta_1$ coefficient from Question 4 is the same as the $\beta_1$ coefficient for presvote in the regression analysis from Question 5 (They are both 0.257).
+	\item This is because the residuals saved from question 1 represent the leftover/unexplained variation of difflog on voteshare. Question 4 shows that the unexplained variation in model 1 is associated with unexplained variation in model 2. In multiple linear regression we are calculating the partial effect, or rather then amount of covariance between an outcome and an explanatory variable that is not explained by the other variables in the model. So, the coefficient for presvote in Question 5 represents the variance explained by presvote \textbf{that is not explained by difflog}. In question 4, we see that the coefficient for the residuals (everything not explained by difflog) is 0.257.
 	\item Overall, the results are the same because conceptually, the coefficient of presvote in question 5 represents variance that is not explained by difflog, which conceptually is the exact same thing we are measuring in the regression model in question 4.
 \end{itemize}	
 
+\begin{flushleft}Interpretation of Regression Results: A 1 unit increase in presvote is associated with, on average, a 0.257 point increase in voteshare, holding all other variables constant. A 1 unit increase in difflog is associated with, on average, a 0.036 point increase in voteshare, holding all other variables constant.
+\end{flushleft}
 
+\begin{itemize}
+	\item  The null hypotheses for such the coefficient:
+	\begin{itemize}
+		\item {Null Hypothesis: $\beta_1$ $=$ 0}
+		\item {Alternative Hypothesis: $\beta_1$ $\neq$ 0}
+	\end{itemize}
+	
+	\item The null hypotheses for the intercept is as follows:
+	\begin{itemize}
+		\item {Null Hypothesis: $\beta_0$ $=$ 0}
+		\item {Alternative Hypothesis: $\beta_0$ $\neq$ 0}
+	\end{itemize}
+	
+\end{itemize}
+
+\begin{flushleft}Because the p-value of the $\beta_1$ and $\beta_2$ coefficients are less than 0.05, we can reject the null hypothesis at the 0.05 level.
+\end{flushleft}
 
 	\end{enumerate}
 
