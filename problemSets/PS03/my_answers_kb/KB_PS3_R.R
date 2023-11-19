@@ -347,3 +347,4 @@ stargazer(resid_reg, type = "text", keep.stat = "ser")
 
 ?stargazer
 ?summmary
+
