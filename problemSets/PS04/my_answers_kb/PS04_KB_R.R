@@ -375,7 +375,7 @@ ftest
 
 
 
-
+#things from slides that i used to write my formulas
 
 # Load data
 load("C:/Users/kburg/OneDrive/Documents/GitHub/StatsI_Fall2023/datasets/anes.Rdata")
