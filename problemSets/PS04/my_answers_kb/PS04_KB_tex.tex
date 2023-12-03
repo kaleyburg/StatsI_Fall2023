@@ -1,0 +1,365 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+
+\title{Problem Set 4 Answers}
+\date{\today}
+\author{Applied Stats/Quant Methods 1}
+
+
+\begin{document}
+	\maketitle
+	\section*{Instructions}
+	\begin{itemize}
+		\item Please show your work! You may lose points by simply writing in the answer. If the problem requires you to execute commands in \texttt{R}, please include the code you used to get your answers. Please also include the \texttt{.R} file that contains your code. If you are not sure if work needs to be shown for a particular problem, please ask.
+		\item Your homework should be submitted electronically on GitHub.
+		\item This problem set is due before 23:59 on Sunday December 3, 2023. No late assignments will be accepted.
+	\end{itemize}
+
+
+
+	\vspace{.5cm}
+\section*{Question 1: Economics}
+\vspace{.25cm}
+\noindent 	
+In this question, use the \texttt{prestige} dataset in the \texttt{car} library. First, run the following commands:
+
+\begin{verbatim}
+install.packages(car)
+library(car)
+data(Prestige)
+help(Prestige)
+\end{verbatim} 
+
+
+\noindent We would like to study whether individuals with higher levels of income have more prestigious jobs. Moreover, we would like to study whether professionals have more prestigious jobs than blue and white collar workers.
+
+\newpage
+\begin{enumerate}
+	
+	\item [(a)]
+	Create a new variable \texttt{professional} by recoding the variable \texttt{type} so that professionals are coded as $1$, and blue and white collar workers are coded as $0$ (Hint: \texttt{ifelse}).
+	
+\begin{itemize}
+	\item First, I imported the data:
+	\item \lstinputlisting[language=R, firstline=20, lastline =23]{PS04_KB_R.R}
+	\item Then I created a binary professional variables from the variable 'type', using professionals as 1 and blue and white collar workers as 0:
+	\item \lstinputlisting[language=R, firstline=50, lastline =50]{PS04_KB_R.R}
+
+% Table created by stargazer v.5.2.3 by Marek Hlavac, Social Policy Institute. E-mail: marek.hlavac at gmail.com
+% Date and time: Sun, Dec 03, 2023 - 11:13:43
+\begin{table}[!htbp] \centering 
+	\caption{Table of professional and type} 
+	\label{} 
+	\begin{tabular}{@{\extracolsep{5pt}} ccc} 
+		\\[-1.8ex]\hline 
+		\hline \\[-1.8ex] 
+		& 0 & 1 \\ 
+		\hline \\[-1.8ex] 
+		bc & $44$ & $0$ \\ 
+		prof & $0$ & $31$ \\ 
+		wc & $23$ & $0$ \\ 
+		\hline \\[-1.8ex] 
+	\end{tabular} 
+\end{table} 
+
+	\item We can see from the table above that this was correctly coded, as anything coded as 1 corresponds to "professional" in the type variable, and anything coded as 0 corresponds to "bc" or "wc" in the type variable.
+	
+
+\end{itemize}
+
+	
+	\item [(b)]
+	Run a linear model with \texttt{prestige} as an outcome and \texttt{income}, \texttt{professional}, and the interaction of the two as predictors (Note: this is a continuous $\times$ dummy interaction.)
+	
+	
+\begin{itemize}
+	\item Then I fit the linear regression model using prestige as the outcome variable, and income, professional, and the interaction between income and professional as the predictor variables 
+	\item \lstinputlisting[language=R, firstline=69, lastline =71]{PS04_KB_R.R}
+	\newpage \item The results of the linear regression are as follows:
+	
+	% Table created by stargazer v.5.2.3 by Marek Hlavac, Social Policy Institute. E-mail: marek.hlavac at gmail.com
+	% Date and time: Sun, Dec 03, 2023 - 11:14:33
+	\begin{table}[!htbp] \centering 
+		\caption{} 
+		\label{} 
+		\begin{tabular}{@{\extracolsep{5pt}}lc} 
+			\\[-1.8ex]\hline 
+			\hline \\[-1.8ex] 
+			& \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+			\cline{2-2} 
+			\\[-1.8ex] & prestige \\ 
+			\hline \\[-1.8ex] 
+			income & 0.003$^{***}$ \\ 
+			& (0.0005) \\ 
+			& \\ 
+			professional & 37.781$^{***}$ \\ 
+			& (4.248) \\ 
+			& \\ 
+			income:professional & $-$0.002$^{***}$ \\ 
+			& (0.001) \\ 
+			& \\ 
+			Constant & 21.142$^{***}$ \\ 
+			& (2.804) \\ 
+			& \\ 
+			\hline \\[-1.8ex] 
+			Observations & 98 \\ 
+			R$^{2}$ & 0.787 \\ 
+			Adjusted R$^{2}$ & 0.780 \\ 
+			Residual Std. Error & 8.012 (df = 94) \\ 
+			F Statistic & 115.878$^{***}$ (df = 3; 94) \\ 
+			\hline 
+			\hline \\[-1.8ex] 
+			\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+		\end{tabular} 
+	\end{table} 
+	
+\end{itemize}
+
+	\item [(c)]
+	Write the prediction equation based on the result.
+	
+	
+\begin{itemize}
+	\item The prediction equation is as follows:
+	
+	\hspace*{-1.5cm} 
+	\colorbox{yellow}{$Prestige = 21.142 + 0.003*Income + 37.781*Professional - 0.002*Income*Professional$}
+ 
+\end{itemize}
+	
+\newpage
+	\item [(d)]
+	Interpret the coefficient for \texttt{income}.
+	
+	
+\begin{itemize}
+	\item \textbf{
+			For those in a blue or white collar profession, with every 1 unit increase in income, prestige score increases, on average, by 0.003 units, while holding all other variables in the model constant.
+	}
+	
+	\item Furthermore, the p-value is \(7.55 \times 10^{-9}\), which means that we can reject the null hypothesis that there is no relationship between income and prestige.
+\end{itemize}
+
+\textbf{(e)} Interpret the coefficient for \texttt{professional}.
+
+
+\begin{itemize}
+	\item \textbf{For poor individuals in a professional occupation, the average prestige score is 37.781 points higher than for poor individuals in a blue or white collar profession.}
+	\item Furthermore, the p-value is 4.14e-14, which means that we can reject the null hypothesis that there is no relationship between type of profession and prestige.
+\end{itemize}
+	
+
+	\item [(f)]
+	What is the effect of a \$1,000 increase in income on prestige score for professional occupations? In other words, we are interested in the marginal effect of income when the variable \texttt{professional} takes the value of $1$. Calculate the change in $\hat{y}$ associated with a \$1,000 increase in income based on your answer for (c).
+	
+\begin{itemize}
+	\item First I calculated the prestige score for a professional income at \$0
+	\item \lstinputlisting[language=R, firstline=156, lastline =156]{PS04_KB_R.R}
+	\item Then I calculated the prestige score for a professional income at \$1000
+	\item \lstinputlisting[language=R, firstline=167, lastline =167]{PS04_KB_R.R}
+	\item Then I subtracted the calculation for \$0 from the calculation for \$1000 to find the marginal effect of income for professional occupations.
+	\item \lstinputlisting[language=R, firstline=178, lastline =178]{PS04_KB_R.R}
+	\item \textbf{I found that the marginal effect of income when the variable \textit{professional} takes the value of 1 is 0.8452}
+\end{itemize}
+	
+\newpage
+	\item [(g)]
+	What is the effect of changing one's occupations from non-professional to professional when her income is \$6,000? We are interested in the marginal effect of professional jobs when the variable \texttt{income} takes the value of $6,000$. Calculate the change in $\hat{y}$ based on your answer for (c).
+	
+
+	
+\begin{itemize}
+		\item First I calculated the prestige score for a non-professional income at \$6000
+		\item \lstinputlisting[language=R, firstline=199, lastline =199]{PS04_KB_R.R}
+		\item Then I calculated the prestige score for a professional income at \$6000
+		\item \lstinputlisting[language=R, firstline=207, lastline =207]{PS04_KB_R.R}
+		\item Then I subtracted the calculation for non-professionals from the calculation for professionals to find the marginal effect of changing to a professional income when one's income is \$6000.
+		\item \lstinputlisting[language=R, firstline=215, lastline =215]{PS04_KB_R.R}
+		\item \textbf{I found that the marginal effect of changing from a non-professional occupation to a professional occupation when one's income is \$6000 is 23.82708}
+	
+\end{itemize}
+	
+	
+\end{enumerate}
+
+\newpage
+
+\section*{Question 2: Political Science}
+\vspace{.25cm}
+\noindent 	Researchers are interested in learning the effect of all of those yard signs on voting preferences.\footnote{Donald P. Green, Jonathan	S. Krasno, Alexander Coppock, Benjamin D. Farrer,	Brandon Lenoir, Joshua N. Zingher. 2016. ``The effects of lawn signs on vote outcomes: Results from four randomized field experiments.'' Electoral Studies 41: 143-150. } Working with a campaign in Fairfax County, Virginia, 131 precincts were randomly divided into a treatment and control group. In 30 precincts, signs were posted around the precinct that read, ``For Sale: Terry McAuliffe. Don't Sellout Virgina on November 5.'' \\
+
+Below is the result of a regression with two variables and a constant.  The dependent variable is the proportion of the vote that went to McAuliff's opponent Ken Cuccinelli. The first variable indicates whether a precinct was randomly assigned to have the sign against McAuliffe posted. The second variable indicates
+a precinct that was adjacent to a precinct in the treatment group (since people in those precincts might be exposed to the signs).  \\
+
+\vspace{.5cm}
+\begin{table}[!htbp]
+	\centering 
+	\textbf{Impact of lawn signs on vote share}\\
+	\begin{tabular}{@{\extracolsep{5pt}}lccc} 
+		\\[-1.8ex] 
+		\hline \\[-1.8ex]
+		Precinct assigned lawn signs  (n=30)  & 0.042\\
+		& (0.016) \\
+		Precinct adjacent to lawn signs (n=76) & 0.042 \\
+		&  (0.013) \\
+		Constant  & 0.302\\
+		& (0.011)
+		\\
+		\hline \\
+	\end{tabular}\\
+	\footnotesize{\textit{Notes:} $R^2$=0.094, N=131}
+\end{table}
+
+\vspace{.5cm}
+\begin{enumerate}
+	\item [(a)] Use the results from a linear regression to determine whether having these yard signs in a precinct affects vote share (e.g., conduct a hypothesis test with $\alpha = .05$).
+	
+	\begin{center}
+		\LARGE $\text{t} = \frac{\beta_i}{\textit{se}}$	
+	\end{center}
+	
+\begin{itemize}
+	\item Formula from pg. 338 of Agresti and Finlay
+	\item I also used code from the week 10 lecture for using this to get the p-values
+	\item My code is as follows:
+	\newline \lstinputlisting[language=R, firstline=244, lastline =253]{PS04_KB_R.R}
+	\item The results are in the table below:
+
+
+	
+	\begin{table}[!htbp]
+		\centering
+		\caption{Impact of Lawn Signs on Vote Share}
+		\begin{tabular}{@{\extracolsep{5pt}}lccc} 
+			\\[-1.8ex] 
+			\hline \\[-1.8ex]
+			& \textbf{Coefficient} & \textbf{Standard Error} & \textbf{p-value} \\
+			\hline
+			Precinct assigned lawn signs (n=30) & 0.042 & (0.016) & 0.009711646 \\
+			Precinct adjacent to lawn signs (n=76) & 0.042 & (0.013) & 0.001566685 \\
+			Constant & 0.302 & (0.011) & $1.013866 \times 10^{-55}$ \\
+			\hline
+		\end{tabular}
+		\label{tab:lawn_signs}
+	\end{table}
+	
+
+		
+	\item The p-value for this $\beta$ coefficient is 0.009711646, which is less than 0.05. Therefore, we can \textbf{reject the null hypothesis with $\alpha$ = 0.05} which states that there is no relationship between having a yard sign in a precinct and the vote share of Ken Cuccinell. This $\beta$ coefficient indicates that having a yard sign in the precinct compared to not having a yard sign in the precinct is, on average, associated with a 0.042 increase in vote share for Cuccinelli
+
+
+	
+\end{itemize}
+
+			
+	\item [(b)]  Use the results to determine whether being
+	next to precincts with these yard signs affects vote
+	share (e.g., conduct a hypothesis test with $\alpha = .05$).
+	
+	
+\begin{itemize}
+	\item The p-value for this $\beta$ coefficient is 0.001566685, which is less than 0.05. Therefore, we can \textbf{reject the null hypothesis with $\alpha$ = 0.05} which states that there is no relationship between having a yard sign next to a precinct and the vote share of Ken Cuccinell. This $\beta$ indicates that having a yard sign next to a precinct compared to not having a yard sign next to a precinct is, on average, associated with a 0.042 increase in vote share for Cuccinelli
+	
+\end{itemize}
+
+
+	\item [(c)] Interpret the coefficient for the constant term substantively.
+	
+\begin{itemize}
+	\item The coefficient for the constant term is 0.302. The  p-value associated with this is 1.013866e-55. Therefore, the analysis for the constant term is as follows:
+	\item \textbf{When there are no yard signs placed in or next to precincts, the vote share value is 0.302 units.} This value is significant at the 0.001 level, as the p-value is significantly small. We can therefore reject the null hypothesis which states that the constant term is 0.
+\end{itemize}
+	\vspace{7cm}
+	
+	\item [(d)] Evaluate the model fit for this regression.  What does this	tell us about the importance of yard signs versus other factors that are not modeled?
+	
+	
+\begin{itemize}
+	\item I calculated an overall F-statistic using the formula from lecture:
+	\large $ F = \frac{R^2 / k}{(1 - R^2) / (n - k - 1)}$
+	\newline \normalsize where n is the overall number of participants and k is the number of explanatory variables in the model.
+	\newline \lstinputlisting[language=R, firstline=248, lastline =249]{PS04_KB_R.R}
+	\lstinputlisting[language=R, firstline=341, lastline =348]{PS04_KB_R.R}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{|c|c|}
+			\hline
+			f-statistic & 13.38411 \\
+			\hline
+			p value & 0.0001782264 \\
+			\hline
+		\end{tabular}
+		\caption{F-statistic and p-value}
+	\end{table}
+	
+	\item Given that there is an extremely p-value for this F-value, we have strong evidence against $H_0:  \beta_1 = \beta_2 = \ldots = \beta_k = 0$. 
+	\item \textbf{This overall suggests that at least one of the explanatory variables is related to vote share for Ken Cuccinelli. Also, the $R^2$ value is 0.094, meaning that $9.4\%$ of variance in vote share for Cuccinelli is explained by lawn signs in or adjacent to precincts. }
+	\item So, we can conclude that we obtain significantly better predictions of y using the multiple regression equation than by using $\bar{y}$.
+	\item In other words, at least one of the variables in our model should have some explanatory power in regards to vote share.
+
+	
+\end{itemize}
+\end{enumerate}  
+
+
+\end{document}
