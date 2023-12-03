@@ -184,6 +184,12 @@ help(Prestige)
 	
 	\hspace*{-1.5cm} 
 	\colorbox{yellow}{$Prestige = 21.142 + 0.003*Income + 37.781*Professional - 0.002*Income*Professional$}
+	\item Furthermore, you can also divide up the prediction into 2 separate equations which correspond to non-prestigious and prestigious incomes. These are as follows
+	\newline \textbf{Non-prestigious occupations:} \colorbox{yellow}{$Prestige = 21.142 + 0.003*Income$}
+	\newline \textbf{Prestigious occupations:}\colorbox{yellow}{$Prestige = 58.923 + 0.001*Income$}
+	\item Prestige refers to prestige the Pineo-Porter prestige score for occupation, from a social survey conducted in the mid-1960s.
+	\item Income refers to average income of incumbents, dollars, in 1971.
+	\item Professional refers to a binary dummy variable, where 0 indicates a blue or white collar occupation and 1 refers to a professional occupation.
  
 \end{itemize}
 	
@@ -193,9 +199,9 @@ help(Prestige)
 	
 	
 \begin{itemize}
-	\item \textbf{
-			For those in a blue or white collar profession, with every 1 unit increase in income, prestige score increases, on average, by 0.003 units, while holding all other variables in the model constant.
-	}
+	\item \textbf{For those in a blue or white collar profession, a 1 unit increase in income is associated with a prestige score increase, on average, of 0.003 units, while holding all other variables in the model constant.}
+	
+	\item Given our prediction equation, we can also plug in 1 in place of 'professional' and find that: for those in a professional occupation, every 1 unit increase in income is associated, on average, with a prestige increase of 0.001
 	
 	\item Furthermore, the p-value is \(7.55 \times 10^{-9}\), which means that we can reject the null hypothesis that there is no relationship between income and prestige.
 \end{itemize}
@@ -205,6 +211,9 @@ help(Prestige)
 
 \begin{itemize}
 	\item \textbf{For poor individuals in a professional occupation, the average prestige score is 37.781 points higher than for poor individuals in a blue or white collar profession.}
+	
+	\item Effectively, this is saying that if income is held at $\$0$, then the change from a blue collar profession to a professional occupation is associated with a 37.781 unit change in prestige score.
+	
 	\item Furthermore, the p-value is 4.14e-14, which means that we can reject the null hypothesis that there is no relationship between type of profession and prestige.
 \end{itemize}
 	
@@ -220,6 +229,7 @@ help(Prestige)
 	\item Then I subtracted the calculation for \$0 from the calculation for \$1000 to find the marginal effect of income for professional occupations.
 	\item \lstinputlisting[language=R, firstline=178, lastline =178]{PS04_KB_R.R}
 	\item \textbf{I found that the marginal effect of income when the variable \textit{professional} takes the value of 1 is 0.8452}
+	\item In other words, the effect of a $\$1000$ increase in income on prestige score for professional occupations is an ssociated change in prestige by 0.8452 units.
 \end{itemize}
 	
 \newpage
@@ -236,6 +246,7 @@ help(Prestige)
 		\item Then I subtracted the calculation for non-professionals from the calculation for professionals to find the marginal effect of changing to a professional income when one's income is \$6000.
 		\item \lstinputlisting[language=R, firstline=215, lastline =215]{PS04_KB_R.R}
 		\item \textbf{I found that the marginal effect of changing from a non-professional occupation to a professional occupation when one's income is \$6000 is 23.82708}
+		\item In other words, the effect of changing one's occupation from non-professional to professional with an income of $\$6000$ is an associated change in prestige by 23.827 units.
 	
 \end{itemize}
 	
@@ -304,7 +315,9 @@ a precinct that was adjacent to a precinct in the treatment group (since people 
 	\end{table}
 	
 
-		
+	\item The hypotheses for this hypothesis test are:
+	\item {Null Hypothesis: $\beta$ $=$ 0}
+	\item {Alternative Hypothesis: $\beta$ $\neq$ 0}
 	\item The p-value for this $\beta$ coefficient is 0.009711646, which is less than 0.05. Therefore, we can \textbf{reject the null hypothesis with $\alpha$ = 0.05} which states that there is no relationship between having a yard sign in a precinct and the vote share of Ken Cuccinell. This $\beta$ coefficient indicates that having a yard sign in the precinct compared to not having a yard sign in the precinct is, on average, associated with a 0.042 increase in vote share for Cuccinelli
 
 
@@ -318,6 +331,9 @@ a precinct that was adjacent to a precinct in the treatment group (since people 
 	
 	
 \begin{itemize}
+	\item The hypotheses for this hypothesis test are:
+	\item {Null Hypothesis: $\beta$ $=$ 0}
+	\item {Alternative Hypothesis: $\beta$ $\neq$ 0}
 	\item The p-value for this $\beta$ coefficient is 0.001566685, which is less than 0.05. Therefore, we can \textbf{reject the null hypothesis with $\alpha$ = 0.05} which states that there is no relationship between having a yard sign next to a precinct and the vote share of Ken Cuccinell. This $\beta$ indicates that having a yard sign next to a precinct compared to not having a yard sign next to a precinct is, on average, associated with a 0.042 increase in vote share for Cuccinelli
 	
 \end{itemize}
@@ -326,10 +342,10 @@ a precinct that was adjacent to a precinct in the treatment group (since people 
 	\item [(c)] Interpret the coefficient for the constant term substantively.
 	
 \begin{itemize}
-	\item The coefficient for the constant term is 0.302. The  p-value associated with this is 1.013866e-55. Therefore, the analysis for the constant term is as follows:
-	\item \textbf{When there are no yard signs placed in or next to precincts, the vote share value is 0.302 units.} This value is significant at the 0.001 level, as the p-value is significantly small. We can therefore reject the null hypothesis which states that the constant term is 0.
+	\item The coefficient for the constant term is 0.302. The  p-value associated with this is 1.013866e-55, meaning the result is statistically significant. Therefore, the analysis for the constant term is as follows:
+	\item \textbf{When there are no yard signs placed in or next to precincts, the vote share value for Cuccinelli is 0.302 units.} This value is significant at the 0.001 level, as the p-value is significantly small. We can therefore reject the null hypothesis which states that the constant term is 0.
 \end{itemize}
-	\vspace{7cm}
+	\vspace{2cm}
 	
 	\item [(d)] Evaluate the model fit for this regression.  What does this	tell us about the importance of yard signs versus other factors that are not modeled?
 	
@@ -352,10 +368,14 @@ a precinct that was adjacent to a precinct in the treatment group (since people 
 		\caption{F-statistic and p-value}
 	\end{table}
 	
-	\item Given that there is an extremely p-value for this F-value, we have strong evidence against $H_0:  \beta_1 = \beta_2 = \ldots = \beta_k = 0$. 
+	\item Given that there is an extremely small p-value for this F-value, we have strong evidence against $H_0:  \beta_1 = \beta_2 = \ldots = \beta_k = 0$. 
 	\item \textbf{This overall suggests that at least one of the explanatory variables is related to vote share for Ken Cuccinelli. Also, the $R^2$ value is 0.094, meaning that $9.4\%$ of variance in vote share for Cuccinelli is explained by lawn signs in or adjacent to precincts. }
 	\item So, we can conclude that we obtain significantly better predictions of y using the multiple regression equation than by using $\bar{y}$.
 	\item In other words, at least one of the variables in our model should have some explanatory power in regards to vote share.
+		\begin{itemize}
+			\item \scriptsize This interpretation is adapted from Agresti and Finlay, pg. 337
+		\end{itemize}
+	\item Both the F-statistic and the $R^2$ value tell us that the presence of yard signs in or adjacent to a precinct is significant in its relation to overall vote share. Although it is a relatively small $R^2$ value, given that this regression only looks at yard signs, it seems significant that this would explain over 9$\%$ of the entire vote share for Cuccinelli. As this is paired with an overall significant F-statistic, we can see that the model fit appears to be relatively useful.
 
 	
 \end{itemize}
